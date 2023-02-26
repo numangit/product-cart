@@ -5,23 +5,41 @@ const cartReducer = (state = cartState, action) => {
 
     switch (action.type) {
         case ADDTOCART:
-
-            const updatedCartState = [...state];
-            if (updatedCartState) {
-                updatedCartState.forEach(product => {
+            console.log("length:", state.length);
+            if (state.length > 0) {
+                state.forEach(product => {
+                    console.log(product.id, action.payload.id);
                     if (product.id === action.payload.id) {
-                        updatedCartState.push({
-                            ...action.payload,
-                            quantity: product.quantity + 1
-                        });
-                        return;
+                        // updatedCartState.push();
+                        return [
+                            ...state,
+                            {
+                                ...action.payload,
+                                quantity: product.quantity + 1
+                            }
+                        ]
+                    } else {
+                        return [
+                            ...state,
+                            {
+                                ...action.payload,
+                                quantity: 1
+                            }
+                        ]
                     }
                 })
 
             } else {
-                updatedCartState.push({ ...action.payload, quantity: 1 })
+                return [
+                    ...state,
+                    {
+                        ...action.payload,
+                        quantity: 1
+                    }
+                ]
             }
-            return updatedCartState;
+            return state;
+
         case INCREMENT:
             console.log("INCREMENT clicked");
             return;
