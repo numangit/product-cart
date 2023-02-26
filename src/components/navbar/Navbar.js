@@ -4,16 +4,16 @@ import logo from '../../images/logo.png';
 const Navbar = ({ setSelectedPage }) => {
 
     return (
-        <nav class="bg-[#171C2A] py-4">
-            <div class="navBar">
+        <nav className="bg-[#171C2A] py-4">
+            <div className="navBar">
                 <a href="index.html">
-                    <img src={logo} alt="LWS" class="max-w-[140px]" />
+                    <img src={logo} alt="LWS" className="max-w-[140px]" />
                 </a>
-                <div class="flex gap-4">
+                <div className="flex gap-4">
                     <a
                         onClick={() => setSelectedPage("home")}
                         // href="#home"
-                        class="navHome"
+                        className="navHome"
                         id="lws-home"
                     >
                         Home
@@ -21,10 +21,10 @@ const Navbar = ({ setSelectedPage }) => {
                     <a
                         onClick={() => setSelectedPage("cart")}
                         // href="cart.html"
-                        class="navCart"
+                        className="navCart"
                         id="lws-cart"
                     >
-                        <i class="text-xl fa-sharp fa-solid fa-bag-shopping"></i>
+                        <i className="text-xl fa-sharp fa-solid fa-bag-shopping"></i>
                         <span id="lws-totalCart">0</span>
                     </a>
                 </div>
