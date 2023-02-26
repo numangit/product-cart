@@ -5,7 +5,7 @@ import logo from '../../images/logo.png';
 const Navbar = ({ setSelectedPage }) => {
 
     const cartQuantity = useSelector((state) => state.cart.reduce((total, cartItem) => total + cartItem.quantity, 0));
-    console.log("cart quantity:", cartQuantity);
+    // console.log("cart quantity:", cartQuantity);
 
     return (
         <nav className="bg-[#171C2A] py-4">
