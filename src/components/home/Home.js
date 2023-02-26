@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import ProductCard from './ProductCard';
 
 const Home = () => {
     const productStates = useSelector((state) => state.products);
@@ -11,6 +12,9 @@ const Home = () => {
                 <div className="productContainer" id="lws-productContainer">
                     {/* <!-- product item --> */}
                     {
+                        productStates.map((product) => <ProductCard key={product.id} product={product} />)
+                    }
+                    {/* {
                         productStates.map((product) => {
                             return <div key={product.id} className="lws-productCard">
                                 <img className="lws-productImage" src={product.imageUrl} alt="product" />
@@ -29,7 +33,7 @@ const Home = () => {
                                 </div>
                             </div>
                         })
-                    }
+                    } */}
                     {/* <!-- product item ends --> */}
                 </div>
                 {/* <!-- products container ends --> */}

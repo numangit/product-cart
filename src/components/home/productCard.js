@@ -1,6 +1,6 @@
 import React from 'react';
 
-const productCard = ({ product }) => {
+const ProductCard = ({ product }) => {
     return (
         <div>
             <div key={product.id} className="lws-productCard">
@@ -13,7 +13,7 @@ const productCard = ({ product }) => {
                         <p className="productQuantity">QTY <span className="lws-quantity">{product.quantity}</span></p>
                     </div>
                     <button
-                        onClick={() => console.log('clicked')} className="lws-btnAddToCart"
+                        onClick={() => console.log('compclicked')} className="lws-btnAddToCart"
                     >
                         Add To Cart
                     </button>
@@ -23,4 +23,4 @@ const productCard = ({ product }) => {
     );
 };
 
-export default productCard;
+export default ProductCard;
