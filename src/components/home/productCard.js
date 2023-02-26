@@ -16,7 +16,7 @@ const ProductCard = ({ product }) => {
     return (
         <div>
             <div key={product.id} className="lws-productCard">
-                <img className="lws-productImage" src={product.imageUrl} alt="product" />
+                <img className="lws-productImage" src={product.imageURL} alt="product" />
                 <div className="p-4 space-y-2">
                     <h4 className="lws-productName">{product.productName}</h4>
                     <p className="lws-productCategory">{product.category}</p>

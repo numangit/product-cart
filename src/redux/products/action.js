@@ -1,6 +1,7 @@
 import { ADDPRODUCT, ADDTOCART, INCREMENT, DECREMENT, DELETECART } from "./actionType";
 
 export const addProduct = (productData) => {
+    console.log(productData);
     return {
         type: ADDPRODUCT,
         payload: productData,
