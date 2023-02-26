@@ -15,9 +15,12 @@ const Home = () => {
                 <div className="productContainer" id="lws-productContainer">
                     {/* <!-- product item --> */}
                     {
-                        productStates
+                        productStates.length > 0
                             ? productStates.map((product) => <ProductCard key={product.id} product={product} />)
-                            : <h1>"No Product Found"</h1>
+                            : <h1
+                                style={{ fontWeight: "bold", fontSize: 20 }}>
+                                No Product Found
+                            </h1>
                     }
                     {/* <!-- product item ends --> */}
                 </div>
