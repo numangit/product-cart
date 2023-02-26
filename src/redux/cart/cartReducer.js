@@ -2,7 +2,7 @@ import { cartState } from "./cartState";
 import { ADDTOCART, INCREMENT, DECREMENT, DELETECART } from "./actionType";
 
 const cartReducer = (state = cartState, action) => {
-    switch (action.payload) {
+    switch (action.type) {
         case ADDTOCART:
             console.log("ADDTOCART clicked");
             return;

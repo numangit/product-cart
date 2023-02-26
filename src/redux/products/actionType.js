@@ -1,5 +1,5 @@
-export const ADDPRODUCT = "product/addProduct";
-export const ADDTOCART = "product/addToCart";
-export const INCREMENT = "product/increment";
-export const DECREMENT = "product/decrement";
-export const DELETECART = "product/deleteCart";
+export const ADDPRODUCT = "products/addProduct";
+export const ADDTOCART = "products/addToCart";
+export const INCREMENT = "products/increment";
+export const DECREMENT = "products/decrement";
+export const DELETECART = "products/deleteCart";

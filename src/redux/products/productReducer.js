@@ -1,11 +1,22 @@
 import { productState } from "./productState";
 import { ADDPRODUCT, ADDTOCART, INCREMENT, DECREMENT, DELETECART } from "./actionType";
 
+const generateId = (arrayData) => {
+    const maxId = arrayData.reduce((maxId, product) => Math.max(product.id, maxId), 0);
+    return maxId + 1;
+};
+
 const productReducer = (state = productState, action) => {
-    switch (action.payload) {
+    switch (action.type) {
         case ADDPRODUCT:
-            console.log(ADDPRODUCT, "clicked");
-            return;
+            return [
+                ...state,
+                {
+                    ...action.payload,
+                    id: generateId(state)
+                }
+            ]
+
         case ADDTOCART:
             console.log(ADDTOCART, "clicked");
             return;
@@ -18,6 +29,7 @@ const productReducer = (state = productState, action) => {
         case DELETECART:
             console.log(DELETECART, "clicked");
             return;
+
         default:
             return state;
     }

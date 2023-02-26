@@ -16,7 +16,6 @@ const ProductForm = () => {
     const submitHandler = (e) => {
         e.preventDefault();
         const selectedProduct = { productName, category, imageURL, price, quantity };
-        // console.log(selectedProduct);
         dispatch(addProduct(selectedProduct));
     }
 
