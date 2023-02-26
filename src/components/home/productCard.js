@@ -1,19 +1,16 @@
 import React from 'react';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 // import { addToCart } from '../../redux/cart/action';
-// import { productItemAddToCart } from '../../redux/products/action';
+import { productItemAddToCart } from '../../redux/products/action';
 
 const ProductCard = ({ product }) => {
 
-    // const dispatch = useDispatch();
-    // const { id, imageUrl, productName, category, price, quantity } = product;
+    const dispatch = useDispatch();
 
     //add to cart handler
-    const addToCardHandler = () => {
-
+    const addToCardHandler = (productData) => {
         // dispatch(addToCart(productData));
-        // dispatch(productItemAddToCart(productData.id));
-        console.log("addToCardHandler");
+        dispatch(productItemAddToCart(productData.id));
     }
 
     return (
@@ -28,7 +25,8 @@ const ProductCard = ({ product }) => {
                         <p className="productQuantity">QTY <span className="lws-quantity">{product.quantity}</span></p>
                     </div>
                     <button
-                        onClick={addToCardHandler}
+                        onClick={() => addToCardHandler(product)}
+                        disabled={product.quantity === 0 && true}
                         className="lws-btnAddToCart"
                     >
                         Add To Cart

@@ -18,8 +18,17 @@ const productReducer = (state = productState, action) => {
             ]
 
         case ADDTOCART:
-            console.log(ADDTOCART, "clicked");
-            return;
+            return state.map((product) => {
+                if (product.id === action.payload) {
+                    console.log(action.payload);
+                    return {
+                        ...product,
+                        quantity: product.quantity - 1
+                    }
+                } else {
+                    return product;
+                }
+            })
         case INCREMENT:
             console.log(INCREMENT, "clicked");
             return;
