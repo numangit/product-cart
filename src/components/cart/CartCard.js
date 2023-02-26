@@ -25,7 +25,7 @@ const cartCard = ({ cartItem }) => {
                     </button>
                 </div>
                 {/* <!-- price --> */}
-                <p className="text-lg font-bold">BDT <span className="lws-calculatedPrice">2200</span></p>
+                <p className="text-lg font-bold">BDT <span className="lws-calculatedPrice">{cartItem.quantity * cartItem.price}</span></p>
             </div>
             {/* <!-- delete button --> */}
             <div className="flex items-center justify-center col-span-2 mt-4 md:justify-end md:mt-0">

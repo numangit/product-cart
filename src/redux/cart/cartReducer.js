@@ -5,51 +5,23 @@ const cartReducer = (state = cartState, action) => {
 
     switch (action.type) {
         case ADDTOCART:
-            // switch (state) {
-            //     case "exist":
-            //         return state.map(product => {
-            //             if (product.id === action.payload.id) {
-            //                 return [
-            //                     ...state,
-            //                     {
-            //                         ...product,
-            //                         quantity: product.quantity + 1
-            //                     }
-            //                 ]
-            //             }
-            //         });
 
-            //     default:
-            //         return [
-            //             ...state,
-            //             {
-            //                 ...action.payload,
-            //                 quantity: 1
-            //             }
-            //         ]
-            // }
-            // if (state) {
-            //     state.map(product => {
-            //         if (product.id === action.payload.id) {
-            //             return [
-            //                 ...state,
-            //                 {
-            //                     ...product,
-            //                     quantity: product.quantity + 1
-            //                 }
-            //             ]
-            //         }
-            //     });
-            // } else {
-            //     return [
-            //         ...state,
-            //         {
-            //             ...action.payload,
-            //             quantity: 1
-            //         }
-            //     ]
-            // }
-            return state;
+            const updatedCartState = [...state];
+            if (updatedCartState) {
+                updatedCartState.forEach(product => {
+                    if (product.id === action.payload.id) {
+                        updatedCartState.push({
+                            ...action.payload,
+                            quantity: product.quantity + 1
+                        });
+                        return;
+                    }
+                })
+
+            } else {
+                updatedCartState.push({ ...action.payload, quantity: 1 })
+            }
+            return updatedCartState;
         case INCREMENT:
             console.log("INCREMENT clicked");
             return;
