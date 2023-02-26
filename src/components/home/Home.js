@@ -1,39 +1,35 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 const Home = () => {
+    const productStates = useSelector((state) => state.products);
+    console.log(productStates);
     return (
         <main className="py-16">
             <div className="productWrapper">
                 {/* <!-- products container --> */}
                 <div className="productContainer" id="lws-productContainer">
                     {/* <!-- product item --> */}
-                    <div className="lws-productCard">
-                        <img className="lws-productImage" src="https://i.dummyjson.com/data/products/59/thumbnail.jpg" alt="product" />
-                        <div className="p-4 space-y-2">
-                            <h4 className="lws-productName">Spring and summershoes</h4>
-                            <p className="lws-productCategory">Mens shoes</p>
-                            <div className="flex items-center justify-between pb-2">
-                                <p className="productPrice">BDT <span className="lws-price">400</span></p>
-                                <p className="productQuantity">QTY <span className="lws-quantity">10</span></p>
+                    {
+                        productStates.map((product) => {
+                            return <div key={product.id} className="lws-productCard">
+                                <img className="lws-productImage" src={product.imageUrl} alt="product" />
+                                <div className="p-4 space-y-2">
+                                    <h4 className="lws-productName">{product.productName}</h4>
+                                    <p className="lws-productCategory">{product.category}</p>
+                                    <div className="flex items-center justify-between pb-2">
+                                        <p className="productPrice">BDT <span className="lws-price">{product.price}</span></p>
+                                        <p className="productQuantity">QTY <span className="lws-quantity">{product.quantity}</span></p>
+                                    </div>
+                                    <button
+                                        onClick={() => console.log('clicked')} className="lws-btnAddToCart"
+                                    >
+                                        Add To Cart
+                                    </button>
+                                </div>
                             </div>
-                            <button className="lws-btnAddToCart">Add To Cart</button>
-                        </div>
-                    </div>
-                    {/* <!-- product item ends --> */}
-
-                    {/* <!-- product item --> */}
-                    <div className="lws-productCard">
-                        <img className="lws-productImage" src="https://i.dummyjson.com/data/products/40/thumbnail.jpg" alt="product" />
-                        <div className="p-4 space-y-2">
-                            <h4 className="lws-productName">Women Winter Clothes</h4>
-                            <p className="lws-productCategory">Tops</p>
-                            <div className="flex items-center justify-between pb-2">
-                                <p className="productPrice">BDT <span className="lws-price">100</span></p>
-                                <p className="productQuantity">QTY <span className="lws-quantity">30</span></p>
-                            </div>
-                            <button className="lws-btnAddToCart">Add To Cart</button>
-                        </div>
-                    </div>
+                        })
+                    }
                     {/* <!-- product item ends --> */}
                 </div>
                 {/* <!-- products container ends --> */}
@@ -77,7 +73,7 @@ const Home = () => {
                     {/* <!-- Product Input Form Ends --> */}
                 </div>
             </div>
-        </main>
+        </main >
     );
 };
 
