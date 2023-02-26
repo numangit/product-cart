@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { addProduct } from '../../redux/products/action';
 
 const ProductForm = () => {
 
@@ -7,24 +8,16 @@ const ProductForm = () => {
 
     const [productName, setProductName] = useState("");
     const [category, setCategory] = useState("");
-    const [imageUrl, setImageUrl] = useState("");
+    const [imageURL, setImageURL] = useState("");
     const [price, setPrice] = useState("");
     const [quantity, setQuantity] = useState("");
-
-    //function to set input value in the state
-    const inputHandler = (e) => {
-        setProductName(e.target.value);
-        setCategory(e.target.value);
-        setImageUrl(e.target.value);
-        setPrice(e.target.value);
-        setQuantity(e.target.value);
-    };
 
     //function to handle form submit
     const submitHandler = (e) => {
         e.preventDefault();
-        const selectedProduct = { productName, category, imageUrl, price, quantity };
-        console.log(selectedProduct);
+        const selectedProduct = { productName, category, imageURL, price, quantity };
+        // console.log(selectedProduct);
+        dispatch(addProduct(selectedProduct));
     }
 
     return (
@@ -43,7 +36,7 @@ const ProductForm = () => {
                         id="lws-inputName"
                         type="text"
                         value={productName}
-                        onChange={inputHandler}
+                        onChange={(e) => setProductName(e.target.value)}
                         required />
                 </div>
                 {/* <!-- product category --> */}
@@ -54,7 +47,7 @@ const ProductForm = () => {
                         id="lws-inputCategory"
                         type="text"
                         value={category}
-                        onChange={inputHandler}
+                        onChange={(e) => setCategory(e.target.value)}
                         required />
                 </div>
                 {/* <!-- product image url --> */}
@@ -64,8 +57,8 @@ const ProductForm = () => {
                         className="addProductInput"
                         id="lws-inputImage"
                         type="text"
-                        value={imageUrl}
-                        onChange={inputHandler}
+                        value={imageURL}
+                        onChange={(e) => setImageURL(e.target.value)}
                         required />
                 </div>
                 {/* <!-- price & quantity container --> */}
@@ -78,7 +71,7 @@ const ProductForm = () => {
                             type="number"
                             id="lws-inputPrice"
                             value={price}
-                            onChange={inputHandler}
+                            onChange={(e) => setPrice(e.target.value)}
                             required />
                     </div>
                     {/* <!-- quantity --> */}
@@ -89,7 +82,7 @@ const ProductForm = () => {
                             type="number"
                             id="lws-inputQuantity"
                             value={quantity}
-                            onChange={inputHandler}
+                            onChange={(e) => setQuantity(e.target.value)}
                             required />
                     </div>
                 </div>
