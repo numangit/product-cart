@@ -5,7 +5,7 @@ const cartCard = ({ cartItem }) => {
         <div className="cartCard">
             <div className="flex items-center col-span-6 space-x-6">
                 {/* <!-- cart image --> */}
-                <img className="lws-cartImage" src="https://i.dummyjson.com/data/products/40/thumbnail.jpg" alt="product" />
+                <img className="lws-cartImage" src={cartItem.imageURL} alt="product" />
                 {/* <!-- cart item info --> */}
                 <div className="space-y-2">
                     <h4 className="lws-cartName">{cartItem.productName}</h4>

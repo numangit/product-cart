@@ -5,40 +5,41 @@ const cartReducer = (state = cartState, action) => {
 
     switch (action.type) {
         case ADDTOCART:
-            console.log("length:", state.length);
-            if (state.length > 0) {
-                state.forEach(product => {
-                    console.log(product.id, action.payload.id);
+            const updatedCart = [...state];
+            let itemExist = false;
+
+            updatedCart.forEach((product => {
+                if (product.id === action.payload.id) {
+                    itemExist = true;
+                }
+            }));
+
+            if (updatedCart.length > 0 && !itemExist) {
+                updatedCart.push({
+                    ...action.payload,
+                    quantity: 1,
+                });
+                return updatedCart;
+
+            } if (updatedCart.length > 0) {
+                updatedCart.forEach((product) => {
                     if (product.id === action.payload.id) {
-                        // updatedCartState.push();
-                        return [
-                            ...state,
-                            {
-                                ...action.payload,
-                                quantity: product.quantity + 1
-                            }
-                        ]
-                    } else {
-                        return [
-                            ...state,
-                            {
-                                ...action.payload,
-                                quantity: 1
-                            }
-                        ]
+                        product.quantity = product.quantity + 1;
+                        // return updatedCart;
                     }
-                })
+                });
+
+            } else if (updatedCart.length === 0) {
+                updatedCart.push({
+                    ...action.payload,
+                    quantity: 1,
+                });
+                return updatedCart;
 
             } else {
-                return [
-                    ...state,
-                    {
-                        ...action.payload,
-                        quantity: 1
-                    }
-                ]
+                return updatedCart;
             }
-            return state;
+            return updatedCart;
 
         case INCREMENT:
             console.log("INCREMENT clicked");
