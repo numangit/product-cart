@@ -1,7 +1,7 @@
 import { productState } from "./productState";
 import { ADDPRODUCT, ADDTOCART, INCREMENT, DECREMENT, DELETECART } from "./actionType";
 
-const cartReducer = (state = productState, action) => {
+const productReducer = (state = productState, action) => {
     switch (action.payload) {
         case ADDPRODUCT:
             console.log(ADDPRODUCT, "clicked");
@@ -23,4 +23,4 @@ const cartReducer = (state = productState, action) => {
     }
 }
 
-export default cartReducer;
+export default productReducer;
