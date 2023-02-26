@@ -1,34 +1,27 @@
-import { ADDPRODUCT, ADDTOCART, INCREMENT, DECREMENT, DELETECART } from "./actionType";
+import { ADDTOCART, INCREMENT, DECREMENT, DELETECART } from "./actionType";
 
-export const addProduct = (productData) => {
+export const addToCart = (productData) => {
     return {
-        type: ADDPRODUCT,
+        type: ADDTOCART,
         payload: productData,
     }
 }
 
-export const addToCart = (productId) => {
-    return {
-        type: ADDTOCART,
-        payload: productId,
-    }
-}
-
-export const productIncrement = (productId) => {
+export const cartItemIncrement = (productId) => {
     return {
         type: INCREMENT,
         payload: productId,
     }
 }
-export const productDecrement = (productId) => {
+export const cartItemDecrement = (productId) => {
     return {
         type: DECREMENT,
         payload: productId,
     }
 }
-export const deleteCart = (deletedQuantity, productId) => {
+export const deleteCartItem = (productId) => {
     return {
         type: DELETECART,
-        payload: { deletedQuantity, productId }
+        payload: { productId }
     }
 }
