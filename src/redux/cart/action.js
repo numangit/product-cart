@@ -8,18 +8,19 @@ export const addToCart = (productData) => {
 }
 
 export const cartItemIncrement = (productId) => {
-    // console.log("inside cartItemIncrement");
     return {
         type: INCREMENT,
         payload: productId,
     }
 }
+
 export const cartItemDecrement = (productId) => {
     return {
         type: DECREMENT,
         payload: productId,
     }
 }
+
 export const deleteCartItem = (productId) => {
     return {
         type: DELETECART,

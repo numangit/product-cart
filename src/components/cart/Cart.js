@@ -6,7 +6,6 @@ import CartCard from './CartCard';
 const Cart = () => {
 
     const cartsState = useSelector((state) => state.cart);
-    console.log(cartsState);
 
     return (
         <main className="py-16">

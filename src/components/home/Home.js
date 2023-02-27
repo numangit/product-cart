@@ -6,7 +6,6 @@ import ProductForm from './ProductForm';
 const Home = () => {
 
     const productStates = useSelector((state) => state.products);
-    // console.log(productStates);
 
     return (
         <main className="py-16">

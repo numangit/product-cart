@@ -6,7 +6,7 @@ const cartReducer = (state = cartState, action) => {
     switch (action.type) {
         case ADDTOCART:
 
-            //using if else
+            //using if else (Success)
             // if (state.length > 0) {
 
             //     const itemExist = state.find(product => product.id === action.payload.id);
