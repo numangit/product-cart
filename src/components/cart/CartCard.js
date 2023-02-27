@@ -1,13 +1,13 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { cartItemDecrement, cartItemIncrement, deleteCartItem } from '../../redux/cart/action';
-import { productItemIncrement } from '../../redux/products/action';
+import { productItemDecrement, productItemIncrement } from '../../redux/products/action';
 
 const CartCard = ({ cartItem }) => {
     const products = useSelector((state) => state.products);
     const dispatch = useDispatch();
 
-    //function to check matching id
+    //function to get current product quantity
     const currentProduct = products.find(product => product.id === cartItem.id)
 
     //increment  button handler
@@ -19,7 +19,7 @@ const CartCard = ({ cartItem }) => {
     //decrement  button handler
     const decrementHandler = (productId) => {
         dispatch(cartItemDecrement(productId));
-        // console.log("inside incrementHandler");
+        dispatch(productItemDecrement(productId));
     }
 
     //delete cart button handler
