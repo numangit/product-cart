@@ -63,8 +63,10 @@ const cartReducer = (state = cartState, action) => {
                 }
                 return product;
             }));
+
         case DELETECART:
             return state.filter((product => product.id !== action.payload));
+
         default:
             return state;
     }

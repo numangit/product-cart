@@ -1,15 +1,19 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { cartItemDecrement, cartItemIncrement, deleteCartItem } from '../../redux/cart/action';
+import { productItemIncrement } from '../../redux/products/action';
 
 const CartCard = ({ cartItem }) => {
-
+    const products = useSelector((state) => state.products);
     const dispatch = useDispatch();
+
+    //function to check matching id
+    const currentProduct = products.find(product => product.id === cartItem.id)
 
     //increment  button handler
     const incrementHandler = (productId) => {
         dispatch(cartItemIncrement(productId));
-        // console.log("inside incrementHandler");
+        dispatch(productItemIncrement(productId));
     }
 
     //decrement  button handler
@@ -23,8 +27,6 @@ const CartCard = ({ cartItem }) => {
         dispatch(deleteCartItem(productId));
         // console.log("inside incrementHandler");
     }
-
-
 
     return (
         <div className="cartCard">
@@ -44,6 +46,7 @@ const CartCard = ({ cartItem }) => {
                     <button
                         onClick={() => incrementHandler(cartItem.id)}
                         className="lws-incrementQuantity"
+                        disabled={currentProduct.quantity === 0 && true}
                     >
                         <i className="text-lg fa-solid fa-plus"></i>
                     </button>
