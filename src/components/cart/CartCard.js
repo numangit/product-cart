@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { cartItemDecrement, cartItemIncrement } from '../../redux/cart/action';
+import { cartItemDecrement, cartItemIncrement, deleteCartItem } from '../../redux/cart/action';
 
 const CartCard = ({ cartItem }) => {
 
@@ -18,6 +18,14 @@ const CartCard = ({ cartItem }) => {
         // console.log("inside incrementHandler");
     }
 
+    //delete cart button handler
+    const deleteCartHandler = (productId) => {
+        dispatch(deleteCartItem(productId));
+        // console.log("inside incrementHandler");
+    }
+
+
+
     return (
         <div className="cartCard">
             <div className="flex items-center col-span-6 space-x-6">
@@ -33,11 +41,11 @@ const CartCard = ({ cartItem }) => {
             <div className="flex items-center justify-center col-span-4 mt-4 space-x-8 md:mt-0">
                 {/* <!-- amount buttons --> */}
                 <div className="flex items-center space-x-4">
-                    <button className="lws-incrementQuantity">
-                        <i
-                            onClick={() => incrementHandler(cartItem.id)}
-                            className="text-lg fa-solid fa-plus"
-                        ></i>
+                    <button
+                        onClick={() => incrementHandler(cartItem.id)}
+                        className="lws-incrementQuantity"
+                    >
+                        <i className="text-lg fa-solid fa-plus"></i>
                     </button>
                     <span className="lws-cartQuantity">{cartItem.quantity}</span>
                     <button
@@ -53,7 +61,10 @@ const CartCard = ({ cartItem }) => {
             </div>
             {/* <!-- delete button --> */}
             <div className="flex items-center justify-center col-span-2 mt-4 md:justify-end md:mt-0">
-                <button className="lws-removeFromCart">
+                <button
+                    onClick={() => deleteCartHandler(cartItem.id)}
+                    className="lws-removeFromCart"
+                >
                     <i className="text-lg text-red-400 fa-solid fa-trash"></i>
                 </button>
             </div>

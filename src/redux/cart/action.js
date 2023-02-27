@@ -23,6 +23,6 @@ export const cartItemDecrement = (productId) => {
 export const deleteCartItem = (productId) => {
     return {
         type: DELETECART,
-        payload: { productId }
+        payload: productId,
     }
 }
