@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { cartItemIncrement } from '../../redux/cart/action';
+import { cartItemDecrement, cartItemIncrement } from '../../redux/cart/action';
 
 const CartCard = ({ cartItem }) => {
 
@@ -9,6 +9,12 @@ const CartCard = ({ cartItem }) => {
     //increment  button handler
     const incrementHandler = (productId) => {
         dispatch(cartItemIncrement(productId));
+        // console.log("inside incrementHandler");
+    }
+
+    //decrement  button handler
+    const decrementHandler = (productId) => {
+        dispatch(cartItemDecrement(productId));
         // console.log("inside incrementHandler");
     }
 
@@ -34,11 +40,11 @@ const CartCard = ({ cartItem }) => {
                         ></i>
                     </button>
                     <span className="lws-cartQuantity">{cartItem.quantity}</span>
-                    <button className="lws-decrementQuantity">
-                        <i
-                            className="text-lg fa-solid fa-minus"
-                            disable={cartItem.quantity === 0 ? true : false}
-                        >
+                    <button
+                        onClick={() => decrementHandler(cartItem.id)} className="lws-decrementQuantity"
+                        disabled={cartItem.quantity === 0 && true}
+                    >
+                        <i className="text-lg fa-solid fa-minus">
                         </i>
                     </button>
                 </div>
