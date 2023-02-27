@@ -5,51 +5,14 @@ const cartReducer = (state = cartState, action) => {
 
     switch (action.type) {
         case ADDTOCART:
-            // const updatedCart = [...state];
-            // let itemExist = false;
-            // state.forEach((product => {
-            //     if (product.id === action.payload.id) {
-            //         itemExist = true;
-            //     }
-            // }));
 
-            // if (updatedCart.length > 0 && !itemExist) {
-            //     updatedCart.push({
-            //         ...action.payload,
-            //         quantity: 1,
-            //     });
-            //     return updatedCart;
+            //using if else
+            // if (state.length > 0) {
 
-            // } else if (updatedCart.length > 0) {
-            //     updatedCart.forEach((product) => {
-            //         if (product.id === action.payload.id) {
-            //             product.quantity = product.quantity + 1;
-            //             return updatedCart;
-            //         }
-            //     });
+            //     const itemExist = state.find(product => product.id === action.payload.id);
+            //     console.log(itemExist);
 
-            // } else if (updatedCart.length === 0) {
-            //     updatedCart.push({
-            //         ...action.payload,
-            //         quantity: 1,
-            //     });
-            //     return updatedCart;
-
-            // } else {
-            //     return updatedCart;
-            // }
-            // return updatedCart;
-
-            // switch (state) {
-            //     case state.length > 0 && !itemExist:
-            //         return [
-            //             ...state,
-            //             {
-            //                 ...action.payload,
-            //                 quantity: 1
-            //             }
-            //         ]
-            //     case state.length > 0:
+            //     if (itemExist) {
             //         return state.map((product) => {
             //             if (product.id === action.payload.id) {
             //                 return {
@@ -59,7 +22,8 @@ const cartReducer = (state = cartState, action) => {
             //             }
             //             return product;
             //         })
-            //     case state.length === 0:
+
+            //     } else {
             //         return [
             //             ...state,
             //             {
@@ -67,80 +31,57 @@ const cartReducer = (state = cartState, action) => {
             //                 quantity: 1
             //             }
             //         ]
-            //     default:
-            //         return state;
-            // }
-
-            ////sucesssssssssssssssssssssssssssss
-
-            // if (state.length > 0 && !itemExist) {
-            //     return [
-            //         ...state,
-            //         {
-            //             ...action.payload,
-            //             quantity: 1
-            //         }
-            //     ]
-            // } else if (state.length > 0) {
-            //     return state.map((product) => {
-            //         if (product.id === action.payload.id) {
-            //             return {
-            //                 ...product,
-            //                 quantity: product.quantity + 1
-            //             };
-            //         }
-            //         return product;
-            //     })
-
-            // } else if (state.length === 0) {
-            //     return [
-            //         ...state,
-            //         {
-            //             ...action.payload,
-            //             quantity: 1
-            //         }
-            //     ]
+            //     }
 
             // } else {
-            //     return state;
+            //     return [
+            //         ...state,
+            //         {
+            //             ...action.payload,
+            //             quantity: 1
+            //         }
+            //     ]
             // }
 
-            if (state.length > 0) {
-
-                const itemExist = state.find(product => product.id === action.payload.id);
-                console.log(itemExist);
-
-                if (itemExist) {
-                    return state.map((product) => {
-                        if (product.id === action.payload.id) {
-                            return {
-                                ...product,
-                                quantity: product.quantity + 1
-                            };
-                        }
-                        return product;
-                    })
-
-                } else {
+            switch (state.length === 0) {
+                case true:
                     return [
-                        ...state,
                         {
                             ...action.payload,
                             quantity: 1
                         }
                     ]
-                }
 
-            } else {
-                return [
-                    ...state,
-                    {
-                        ...action.payload,
-                        quantity: 1
+                case false:
+                    const exist = state.find(product => product.id === action.payload.id)
+                    switch (exist === undefined) {
+                        case false:
+                            return state.map((product) => {
+                                if (product.id === action.payload.id) {
+                                    return {
+                                        ...product,
+                                        quantity: product.quantity + 1
+                                    };
+                                }
+                                return product;
+                            })
+
+                        case true:
+                            return [
+                                ...state,
+                                {
+                                    ...action.payload,
+                                    quantity: 1
+                                }
+                            ]
+
+                        default:
+                            return state;
                     }
-                ]
-            }
 
+                default:
+                    return state;
+            }
 
         case INCREMENT:
             return state.map((product => {
