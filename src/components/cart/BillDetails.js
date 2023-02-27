@@ -2,7 +2,8 @@ import React from 'react';
 
 const BillDetails = ({ cartsState }) => {
 
-    // const cartQuantity = cartsState.cart.reduce((total, cartItem) => total + cartItem.price, 0);
+
+    const subTotal = cartsState.reduce((prev, cartItem) => (cartItem.price * cartItem.quantity) + prev, 0);
 
     return (
         <div>
@@ -12,7 +13,7 @@ const BillDetails = ({ cartsState }) => {
                     {/* <!-- sub total --> */}
                     <div className="flex items-center justify-between">
                         <p>Sub Total</p>
-                        <p>BDT <span className="lws-subtotal">89999</span></p>
+                        <p>BDT <span className="lws-subtotal">{subTotal}</span></p>
                     </div>
                     {/* <!-- Discount --> */}
                     <div className="flex items-center justify-between">
@@ -27,7 +28,7 @@ const BillDetails = ({ cartsState }) => {
                     {/* <!-- Total --> */}
                     <div className="flex items-center justify-between pb-4">
                         <p className="font-bold">TOTAL</p>
-                        <p className="font-bold">BDT <span className="lws-total">89999</span></p>
+                        <p className="font-bold">BDT <span className="lws-total">{subTotal}</span></p>
                     </div>
                     <button className="placeOrderbtn">place order</button>
                 </div>
