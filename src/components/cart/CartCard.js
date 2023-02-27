@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { cartItemDecrement, cartItemIncrement, deleteCartItem } from '../../redux/cart/action';
-import { productItemDecrement, productItemIncrement } from '../../redux/products/action';
+import { productItemDecrement, productItemDeleteCart, productItemIncrement } from '../../redux/products/action';
 
 const CartCard = ({ cartItem }) => {
     const products = useSelector((state) => state.products);
@@ -23,9 +23,9 @@ const CartCard = ({ cartItem }) => {
     }
 
     //delete cart button handler
-    const deleteCartHandler = (productId) => {
+    const deleteCartHandler = (deletedQuantity, productId) => {
         dispatch(deleteCartItem(productId));
-        // console.log("inside incrementHandler");
+        dispatch(productItemDeleteCart(deletedQuantity, productId));
     }
 
     return (
@@ -65,7 +65,7 @@ const CartCard = ({ cartItem }) => {
             {/* <!-- delete button --> */}
             <div className="flex items-center justify-center col-span-2 mt-4 md:justify-end md:mt-0">
                 <button
-                    onClick={() => deleteCartHandler(cartItem.id)}
+                    onClick={() => deleteCartHandler(cartItem.quantity, cartItem.id)}
                     className="lws-removeFromCart"
                 >
                     <i className="text-lg text-red-400 fa-solid fa-trash"></i>

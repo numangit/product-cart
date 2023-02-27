@@ -53,8 +53,15 @@ const productReducer = (state = productState, action) => {
             });
 
         case DELETECART:
-            console.log(DELETECART, "clicked");
-            return;
+            return state.map(product => {
+                if (product.id === action.payload.productId) {
+                    return {
+                        ...product,
+                        quantity: product.quantity + action.payload.deletedQuantity
+                    }
+                }
+                return product;
+            });
 
         default:
             return state;
