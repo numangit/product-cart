@@ -8,7 +8,6 @@ const ProductCard = ({ product }) => {
 
     //add to cart handler
     const addToCardHandler = (productData) => {
-
         dispatch(addToCart(productData));
         dispatch(productItemAddToCart(productData.id));
     }

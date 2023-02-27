@@ -1,6 +1,17 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { cartItemIncrement } from '../../redux/cart/action';
 
-const cartCard = ({ cartItem }) => {
+const CartCard = ({ cartItem }) => {
+
+    const dispatch = useDispatch();
+
+    //increment  button handler
+    const incrementHandler = (productId) => {
+        dispatch(cartItemIncrement(productId));
+        // console.log("inside incrementHandler");
+    }
+
     return (
         <div className="cartCard">
             <div className="flex items-center col-span-6 space-x-6">
@@ -17,11 +28,18 @@ const cartCard = ({ cartItem }) => {
                 {/* <!-- amount buttons --> */}
                 <div className="flex items-center space-x-4">
                     <button className="lws-incrementQuantity">
-                        <i className="text-lg fa-solid fa-plus"></i>
+                        <i
+                            onClick={() => incrementHandler(cartItem.id)}
+                            className="text-lg fa-solid fa-plus"
+                        ></i>
                     </button>
                     <span className="lws-cartQuantity">{cartItem.quantity}</span>
                     <button className="lws-decrementQuantity">
-                        <i className="text-lg fa-solid fa-minus"></i>
+                        <i
+                            className="text-lg fa-solid fa-minus"
+                            disable={cartItem.quantity === 0 ? true : false}
+                        >
+                        </i>
                     </button>
                 </div>
                 {/* <!-- price --> */}
@@ -37,4 +55,4 @@ const cartCard = ({ cartItem }) => {
     );
 };
 
-export default cartCard;
+export default CartCard;

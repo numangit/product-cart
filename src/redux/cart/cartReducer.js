@@ -25,7 +25,7 @@ const cartReducer = (state = cartState, action) => {
                 updatedCart.forEach((product) => {
                     if (product.id === action.payload.id) {
                         product.quantity = product.quantity + 1;
-                        // return updatedCart;
+                        return updatedCart;
                     }
                 });
 
@@ -39,11 +39,20 @@ const cartReducer = (state = cartState, action) => {
             } else {
                 return updatedCart;
             }
+
             return updatedCart;
 
         case INCREMENT:
-            console.log("INCREMENT clicked");
-            return;
+            return state.map((product => {
+                if (product.id === action.payload) {
+                    return {
+                        ...product,
+                        quantity: product.quantity + 1
+                    }
+                }
+                return product;
+            }));
+
         case DECREMENT:
             console.log("DECREMENT clicked");
             return;

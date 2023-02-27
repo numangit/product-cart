@@ -8,6 +8,7 @@ export const addToCart = (productData) => {
 }
 
 export const cartItemIncrement = (productId) => {
+    // console.log("inside cartItemIncrement");
     return {
         type: INCREMENT,
         payload: productId,
